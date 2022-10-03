@@ -3,6 +3,8 @@
 // the prelude is a standard library automatically included in rust files
 // if something is not in the prelude then you have to bring it in using use
 use std::io;
+// importing the range methods from the random library
+use rand::Rng;
 
 // main function is entry point into the program
 // fn syntac declares a new function
@@ -10,6 +12,12 @@ use std::io;
 // brackets contain the body of the function
 fn main() {
     println!("Guess the number!");
+
+    // defining a secret number to make the game more fun
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+
+    // printing the secret number
+    println!("The secret number is: {secret_number}");
 
     println!("Please input your guess.");
 
@@ -42,4 +50,5 @@ fn main() {
 
     // this line prints the string that now contains the user's input
     println!("You guessed: {guess}");
+    // trivial change
 }
