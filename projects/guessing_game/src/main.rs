@@ -40,5 +40,6 @@ fn main() {
         // we use except becuase we want to crash the program when a problem occurs
         .expect("Failed to read line");
 
+    // this line prints the string that now contains the user's input
     println!("You guessed: {guess}");
 }
