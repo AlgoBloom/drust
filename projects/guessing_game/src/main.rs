@@ -62,7 +62,10 @@ fn main() {
         // often used when you want to convert data types
         // bind new variable to the expression guess.trim().parse()
         // trims the whitespace and parse converts type
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         // this line prints the string that now contains the user's input
         println!("You guessed: {guess}");
