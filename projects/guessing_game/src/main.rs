@@ -24,7 +24,7 @@ fn main() {
     // then we call the gen_range method on the random number generator
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-
+    // added a loop to allow the user to make multiple guesses
     loop {
         // printing the secret number
         println!("The secret number is: {secret_number}");
@@ -72,7 +72,12 @@ fn main() {
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
-            Ordering::Equal => println!("You win!"),
+            Ordering::Equal => {
+                println!("You win!");
+                // exits the loop
+                // also exits the program because the loop is the last part of main
+                break;
+            }
         }
 
     }
