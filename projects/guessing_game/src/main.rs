@@ -7,7 +7,9 @@ use std::io;
 // Rng trait defines methods that random number generators implement
 // this trait must be in scope for us to use those methods
 use rand::Rng;
-// umport Ordering trait from the cmp library
+// import Ordering type from the cmp library
+// ordering type is another enum and has the variants Less, Greater, and Equal
+// these three outcomes are possible when you compare two values
 use std::cmp::Ordering;
 
 // main function is entry point into the program
@@ -54,7 +56,20 @@ fn main() {
         // we use except becuase we want to crash the program when a problem occurs
         .expect("Failed to read line");
 
+    // shadowing in rust lets us reuse the guess variable name rather than forcing us to create two unique variables
+    // often used when you want to convert data types
+    // bind new variable to the expression guess.trim().parse()
+    // trims the whitespace and parse converts type
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
     // this line prints the string that now contains the user's input
     println!("You guessed: {guess}");
-    // trivial change
+    
+    // this functionality figured out if the user guess matches the random number
+    // a match expression is made up of arms, an arm consists of a pattern to match against, and the code that should be run if the value fiven to match fits the arm's pattern
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!"),
+    }
 }
