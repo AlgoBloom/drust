@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../guessing_game/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../guessing_game/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../guessing_game/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<span id="2">2</span>
+<span id="3">3</span>
+<span id="4">4</span>
+<span id="5">5</span>
+<span id="6">6</span>
+<span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
+<span id="10">10</span>
+<span id="11">11</span>
+<span id="12">12</span>
+<span id="13">13</span>
+<span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
+<span id="25">25</span>
+<span id="26">26</span>
+<span id="27">27</span>
+<span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
+</pre><pre class="rust"><code><span class="comment">// bring in the io libray in to scope to use inputs and outputs</span>
+<span class="comment">// io library comes from the standard library</span>
+<span class="comment">// the prelude is a standard library automatically included in rust files</span>
+<span class="comment">// if something is not in the prelude then you have to bring it in using use</span>
+<span class="kw">use</span> <span class="ident">std::io</span>;
+<span class="comment">// importing the range methods from the random library</span>
+<span class="comment">// Rng trait defines methods that random number generators implement</span>
+<span class="comment">// this trait must be in scope for us to use those methods</span>
+<span class="kw">use</span> <span class="ident">rand::Rng</span>;
+
+<span class="comment">// main function is entry point into the program</span>
+<span class="comment">// fn syntac declares a new function</span>
+<span class="comment">// parentheses are empty so no parameters</span>
+<span class="comment">// brackets contain the body of the function</span>
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="macro">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);
+
+    <span class="comment">// defining a secret number to make the game more fun</span>
+    <span class="comment">// rand::thread_rng function gives us the particular random generator that we are using, one that is local to the current thread of execution and seeded by the operating system</span>
+    <span class="comment">// then we call the gen_range method on the random number generator</span>
+    <span class="kw">let</span> <span class="ident">secret_number</span> <span class="op">=</span> <span class="ident">rand::thread_rng</span>().<span class="ident">gen_range</span>(<span class="number">1</span>..<span class="op">=</span><span class="number">100</span>);
+
+    <span class="comment">// printing the secret number</span>
+    <span class="macro">println!</span>(<span class="string">&quot;The secret number is: {secret_number}&quot;</span>);
+
+    <span class="macro">println!</span>(<span class="string">&quot;Please input your guess.&quot;</span>);
+
+    <span class="comment">// varible guess for storing user input</span>
+    <span class="comment">// use let statement to create the variable</span>
+    <span class="comment">// in rust vars are immutible by default so use let to make sure this variable is mutable</span>
+    <span class="comment">// mut adds a type of mutable to this variable making it mutable</span>
+    <span class="comment">// this variable returns a new string</span>
+    <span class="comment">// allows multiple parts of your code to access one piece of data without needing to copy that data into memory multiple times</span>
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">guess</span> <span class="op">=</span> <span class="ident">String::new</span>();
+
+    <span class="comment">// calling stdin function allows us to handle user input</span>
+    <span class="ident">io::stdin</span>()
+        <span class="comment">// calls the read line method</span>
+        <span class="comment">// passing the guess variable into the read line method</span>
+        <span class="comment">// this allows us to tell guess what to store</span>
+        <span class="comment">// takes user input and appends it to a string</span>
+        <span class="comment">// &amp; indicates that this argument is a reference</span>
+        <span class="comment">// must continue using mut to clearly define the variable as mutable</span>
+        <span class="comment">// read line returns a Result value of type enum, or enumeration, which is a type that can be in one of multiple possible states, we call each possible state a variant</span>
+        <span class="comment">// purpose of Result types is to encode error handling information</span>
+        .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">guess</span>)
+        <span class="comment">// the Result&#39;s variants are Ok and Err</span>
+        <span class="comment">// Ok variant indicates the operation was successful and inside Ok is the successfully generated value</span>
+        <span class="comment">// Err variant means the operation failed and Err contains information about how or why the operation failed</span>
+        <span class="comment">// values or the Result type, like values of any type, have methods defined on them</span>
+        <span class="comment">// an instance of Result has an expect method that you can call</span>
+        <span class="comment">// we use except becuase we want to crash the program when a problem occurs</span>
+        .<span class="ident">expect</span>(<span class="string">&quot;Failed to read line&quot;</span>);
+
+    <span class="comment">// this line prints the string that now contains the user&#39;s input</span>
+    <span class="macro">println!</span>(<span class="string">&quot;You guessed: {guess}&quot;</span>);
+    <span class="comment">// trivial change</span>
+}</code></pre></div>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="guessing_game" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>

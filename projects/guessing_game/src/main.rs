@@ -4,7 +4,11 @@
 // if something is not in the prelude then you have to bring it in using use
 use std::io;
 // importing the range methods from the random library
+// Rng trait defines methods that random number generators implement
+// this trait must be in scope for us to use those methods
 use rand::Rng;
+// umport Ordering trait from the cmp library
+use std::cmp::Ordering;
 
 // main function is entry point into the program
 // fn syntac declares a new function
@@ -14,6 +18,8 @@ fn main() {
     println!("Guess the number!");
 
     // defining a secret number to make the game more fun
+    // rand::thread_rng function gives us the particular random generator that we are using, one that is local to the current thread of execution and seeded by the operating system
+    // then we call the gen_range method on the random number generator
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
     // printing the secret number
