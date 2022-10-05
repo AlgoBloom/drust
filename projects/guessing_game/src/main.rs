@@ -26,9 +26,6 @@ fn main() {
 
     // added a loop to allow the user to make multiple guesses
     loop {
-        // printing the secret number
-        println!("The secret number is: {secret_number}");
-
         println!("Please input your guess.");
 
         // varible guess for storing user input
@@ -64,7 +61,7 @@ fn main() {
         // trims the whitespace and parse converts type
         let guess: u32 = match guess.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue,
+            Err(_) => continue, // continues when error type of enum is returned
         };
 
         // this line prints the string that now contains the user's input
