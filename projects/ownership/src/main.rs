@@ -1,9 +1,9 @@
 fn main() {
     let mut s = String::from("hello");
 
-    change(&mut s);
-}
+    {
+        let r1 = &mut s;
+    } // r1 goes out of scope here, so we can make a new reference with no problems.
 
-fn change(some_string: &mut String) {
-    some_string.push_str(", world");
+    let r2 = &mut s;
 }
