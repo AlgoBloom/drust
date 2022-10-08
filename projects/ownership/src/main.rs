@@ -1,6 +1,11 @@
-fn dangle() -> &String { // dangle returns a reference to a String
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
 
-    let s = String::from("hello"); // s is a new String
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
 
-    s 
-} 
+    s.len()
+}
